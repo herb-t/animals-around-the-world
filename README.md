@@ -3,4 +3,6 @@
 ##Animals Around The World
 Animals Around The World is a presentation of different animals and their habitats.
 
-The [WebApp](https://herb-t.github.io/animals-around-the-world) can be viewed [here](https://herb-t.github.io/animals-around-the-world).
+This build uses service workers to cache the page to run offline.
+
+The [website build](https://github.com/herb-t/science-fair-2016) without implementing service workers can be viewed [here](http://dev.herbtorres.com/kaiya-wines-science-fair-2016/#/home).
