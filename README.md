@@ -1,7 +1,7 @@
-# Hook Polymer Scaffold
+#Kaiya Torres - Wines Science Fair Project 2016
 
-This is a scaffold for Polymer projects at Hook. It contains a minimal
-implementation of a Polymer app.
+##Animals Around The World
+Animals Around The World is a presentation of different animals and their habitats. A responsive image gallery of different animals around the world.
 
 # Getting Started
 
