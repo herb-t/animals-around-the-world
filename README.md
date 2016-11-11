@@ -3,6 +3,8 @@
 ##Animals Around The World
 Animals Around The World is a presentation of different animals and their habitats. A responsive image gallery of different animals around the world.
 
+Here is a [version](https://github.com/herb-t/science-fair-2016) that uses service workers to cache the page so it runs offline. It's hosted on gh-pages [here](https://herb-t.github.io/science-fair-2016/#/home).
+
 # Getting Started
 
 This scaffold has three global dependencies: Node and Gulp and Bower. To
