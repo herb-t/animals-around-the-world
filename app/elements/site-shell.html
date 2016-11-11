@@ -1,0 +1,213 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animatable.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+
+<dom-module id="site-shell">
+
+  <template>
+
+    <style include="shared-styles">
+
+      /**
+       * Body styles
+       */
+
+      :host {
+        font-family: 'Source Sans Pro', sans-serif;
+        color: var(--hook-black);
+        margin: 0;
+        padding: 0;
+      }
+
+      /**
+       * Header and Footer styles
+       */
+
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+        background: var(--hook-grey);
+        z-index: 10;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      .site-header a {
+        display: block;
+      }
+
+      /**
+       * Main container styles
+       */
+
+      #header-title {
+        font: 700 18px/55px 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 2px;
+        padding: 0 0 0 20px;
+        color: #cf482a;
+      }
+
+      #nav {
+        -webkit-align-self: flex-end;
+                align-self: flex-end;
+        --paper-tabs-selection-bar-color: #cf482a;
+        margin-right: 20px;
+      }
+
+      paper-tab {
+        margin: 0 20px;
+      }
+
+      paper-tab:last-child {
+        margin-right: 0;
+      }
+
+      paper-tab a {
+        font: 700 16px/55px 'Montserrat', sans-serif;
+        color: #000;
+        text-decoration: none;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .spacer {
+        -webkit-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+      }
+
+      @media screen and (max-width: 769px) {
+        #header-title {
+          font-size: 16px;
+        }
+
+        paper-tab {
+          margin: 0 10px;
+        }
+
+        paper-tab a {
+          font-size: 14px;
+        }
+
+      }
+
+    </style>
+
+    <!-- Header -->
+
+    <header class="site-header">
+
+      <a href="#/home" id="header-title">Kaiya Torres</a>
+
+      <div class="spacer"></div>
+
+      <paper-tabs id="nav" selected='{{pageData.page}}' attr-for-selected='key' noink>
+        <paper-tab noink link key='home'><a href="#/home">home</a></paper-tab>
+        <paper-tab noink link key='safari'><a href="#/safari">safari</a></paper-tab>
+        <paper-tab noink link key='jungle'><a href="#/jungle">jungle</a></paper-tab>
+        <paper-tab noink link key='artic'><a href="#/artic">artic</a></paper-tab>
+        <paper-tab noink link key='desert'><a href="#/desert">desert</a></paper-tab>
+        <paper-tab noink link key='ocean'><a href="#/ocean">ocean</a></paper-tab>
+      </paper-tabs>
+
+    </header>
+
+    <!-- app route -->
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+    <app-route route="{{route}}" pattern="/:page" data="{{pageData}}" tail="{{pageTail}}"></app-route>
+
+    <neon-animated-pages selected="{{pageData.page}}"
+                         attr-for-selected="key"
+                         entry-animation="fade-in-animation"
+                         exit-animation="fade-out-animation">
+
+      <neon-animatable key="home">
+        <site-page-home></site-page-home>
+      </neon-animatable>
+
+      <neon-animatable key="safari">
+        <site-page-safari route="{{pageTail}}"></site-page-safari>
+      </neon-animatable>
+
+      <neon-animatable key="jungle">
+        <site-page-jungle route="{{pageTail}}"></site-page-jungle>
+      </neon-animatable>
+
+      <neon-animatable key="artic">
+        <site-page-artic route="{{pageTail}}"></site-page-artic>
+      </neon-animatable>
+
+      <neon-animatable key="desert">
+        <site-page-desert route="{{pageTail}}"></site-page-desert>
+      </neon-animatable>
+
+      <neon-animatable key="ocean">
+        <site-page-underwater route="{{pageTail}}"></site-page-underwater>
+      </neon-animatable>
+
+    </neon-animated-pages>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'site-shell',
+
+      properties: {
+         route: {
+           type: Object,
+           notify: true,
+           observer: '_routeChanged'
+         }
+       },
+
+      created: function() {
+        this.removeAttribute('unresolved');
+      },
+
+      attached: function() {
+        if (!this.route.path){
+          this.set('route.path', '/home');
+        }
+      },
+
+      _routeChanged: function(newValue, oldValue) {
+        if(newValue.path === '' || newValue.path === null) {
+          this.set('route.path', '/home');
+        }
+      }
+
+    });
+
+  </script>
+
+</dom-module>

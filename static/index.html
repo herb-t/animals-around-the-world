@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Animals Around The World</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- fav icon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+
+    <!-- Facebook -->
+    <meta name="og:title" property="og:title" content="Animals Around The World">
+    <meta name="og:site_name" property="og:site_name"  content="Animals Around The World">
+    <meta name="og:url" property="og:url" content="http://dev.herbtorres.com/kaiya-wines-science-fair-2016/#/home">
+    <meta name="og:description" property="og:description" content="Kaiya Torres' 2016 3rd Grade Science Fair Project Presentation.">
+    <meta name="og:image" property="og:image" content="http://dev.herbtorres.com/kaiya-wines-science-fair-2016/images/facebook-share.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@herb_x">
+    <meta name="twitter:title" content="Animals Around The World">
+    <meta name="twitter:description" content="Kaiya Torres' 2016 3rd Grade Science Fair Project Presentation.">
+    <meta name="twitter:image" content="http://dev.herbtorres.com/kaiya-wines-science-fair-2016/images/twitter-share.png">
+
+    <!-- base fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Source+Sans+Pro" rel="stylesheet">
+
+    <!-- styles -->
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- scripts -->
+    <!-- build:js js/webcomponents.min.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <!-- endbuild -->
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- elements -->
+    <link rel="import" href="elements/elements.html">
+
+    <style>
+        site-shell {
+          -webkit-transition: opacity 0.3s ease-out;
+             -moz-transition: opacity 0.3s ease-out;
+              -ms-transition: opacity 0.3s ease-out;
+               -o-transition: opacity 0.3s ease-out;
+                  transition: opacity 0.3s ease-out;
+        }
+
+        /* styling for render while resources are loading */
+        site-shell[unresolved] {
+          display: block;
+          padding: 0 16px;
+          overflow: hidden;
+          opacity: 0;
+        }
+    </style>
+  </head>
+
+  <!-- <body unresolved> -->
+  <body unresolved>
+
+      <site-shell unresolved></site-shell>
+
+      <div class="notify"></div>
+
+  </body>
+</html>
